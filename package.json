@@ -1,11 +1,11 @@
 {
   "name": "dns-packet",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "An abstract-encoding compliant module for encoding / decoding DNS packets",
-  "author": "Mathias Buus",
+  "author": "Mathias Buus / Austin Hounsel",
   "license": "MIT",
-  "repository": "mafintosh/dns-packet",
-  "homepage": "https://github.com/mafintosh/dns-packet",
+  "repository": "mozilla/dns-packet",
+  "homepage": "https://github.com/mozilla/dns-packet",
   "engines": {
     "node": ">=6"
   },
