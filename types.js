@@ -46,6 +46,10 @@ exports.toString = function (type) {
     case 251: return 'IXFR'
     case 41: return 'OPT'
     case 255: return 'ANY'
+    case 53: return 'SMIMEA'
+    case 65: return 'HTTPS'
+    case 32771: return 'NEWONE'
+    case 65281: return 'NEWTWO'
   }
   return 'UNKNOWN_' + type
 }
@@ -97,6 +101,10 @@ exports.toType = function (name) {
     case 'OPT': return 41
     case 'ANY': return 255
     case '*': return 255
+    case 'SMIMEA': return 53
+    case 'HTTPS': return 65
+    case 'NEWONE': return 32771
+    case 'NEWTWO': return 65281
   }
   if (name.toUpperCase().startsWith('UNKNOWN_')) return parseInt(name.slice(8))
   return 0
