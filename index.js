@@ -1472,7 +1472,7 @@ exports.decode = function (buf, offset) {
 
   const oldOffset = offset
   const result = header.decode(buf, offset)
-  console.log("# of answers: " + result.answers);
+  console.log("# of answers: " + result.answers.length);
   offset += header.decode.bytes
 
   offset = decodeList(result.questions, question, buf, offset)
