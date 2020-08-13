@@ -1,9 +1,13 @@
 root: true
 
+parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2015
+
+plugins:
+  - '@typescript-eslint'
 
 env:
   node: true
 
-extends: standard
+extends: 'standard-with-typescript'
