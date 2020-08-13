@@ -1,6 +1,4 @@
-'use strict'
-
-exports.toString = function (klass) {
+export function toString (klass: number) {
   switch (klass) {
     case 1: return 'IN'
     case 2: return 'CS'
@@ -8,10 +6,10 @@ exports.toString = function (klass) {
     case 4: return 'HS'
     case 255: return 'ANY'
   }
-  return 'UNKNOWN_' + klass
+  return `UNKNOWN_${klass}`
 }
 
-exports.toClass = function (name) {
+export function toClass (name: string) {
   switch (name.toUpperCase()) {
     case 'IN': return 1
     case 'CS': return 2

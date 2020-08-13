@@ -1,11 +1,9 @@
-'use strict'
-
 /*
  * Traditional DNS header RCODEs (4-bits) defined by IANA in
  * https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml
  */
 
-exports.toString = function (rcode) {
+export function toString (rcode: number) {
   switch (rcode) {
     case 0: return 'NOERROR'
     case 1: return 'FORMERR'
@@ -24,10 +22,10 @@ exports.toString = function (rcode) {
     case 14: return 'RCODE_14'
     case 15: return 'RCODE_15'
   }
-  return 'RCODE_' + rcode
+  return `RCODE_${rcode}`
 }
 
-exports.toRcode = function (code) {
+export function toRcode (code: string) {
   switch (code.toUpperCase()) {
     case 'NOERROR': return 0
     case 'FORMERR': return 1

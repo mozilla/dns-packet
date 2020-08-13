@@ -1,10 +1,10 @@
 'use strict'
 
 const tape = require('tape')
-const packet = require('./dist/')
-const rcodes = require('./dist/rcodes')
-const opcodes = require('./dist/opcodes')
-const optioncodes = require('./dist/optioncodes')
+const packet = require('../dist/')
+const rcodes = require('../dist/rcodes')
+const opcodes = require('../dist/opcodes')
+const optioncodes = require('../dist/optioncodes')
 
 tape('unknown', function (t) {
   testEncoder(t, packet.unknown, Buffer.from('hello world'))

@@ -14,15 +14,16 @@
     "watch": "tsc -w",
     "prepack": "tsc build",
     "clean": "rm -rf coverage .nyc_output/",
-    "lint": "eslint --color *.js examples/*.js",
+    "lint": "eslint --color src/*.ts",
     "pretest": "npm run lint",
-    "test": "tape test.js",
+    "test": "tape test/test.js",
     "coverage": "nyc -r html npm test"
   },
   "dependencies": {
     "ip": "^1.1.5"
   },
   "devDependencies": {
+    "@types/ip": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "eslint": "^7.6.0",
     "eslint-config-standard-with-typescript": "^18.0.2",
