@@ -1,6 +1,6 @@
 export type TXTValue = Buffer | string | Buffer[] | string[] | Array<Buffer | string>
 
-export function encode (data: TXTValue, buf: Buffer, offset: number) {
+export function encode (data: TXTValue, buf?: Buffer, offset = 0) {
   if (!Array.isArray(data)) data = [data]
   for (let i = 0; i < data.length; i++) {
     if (typeof data[i] === 'string') {
@@ -21,8 +21,8 @@ export function encode (data: TXTValue, buf: Buffer, offset: number) {
   offset += 2
 
   _data.forEach(function (d) {
-    buf[offset++] = d.length
-    d.copy(buf, offset, 0, d.length)
+    buf![offset++] = d.length
+    d.copy(buf!, offset, 0, d.length)
     offset += d.length
   })
 
@@ -33,7 +33,7 @@ export function encode (data: TXTValue, buf: Buffer, offset: number) {
 
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) offset = 0
   const oldOffset = offset
   let remaining = buf.readUInt16BE(offset)

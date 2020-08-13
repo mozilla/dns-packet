@@ -14,14 +14,14 @@ export interface Header {
 const QUERY_FLAG = 0
 const RESPONSE_FLAG = 1 << 15
 
-export function encode (h: Header, buf: Buffer, offset: number) {
+export function encode (h: Header, buf?: Buffer, offset = 0) {
   if (!buf) buf = Buffer.allocUnsafe(encodingLength())
   if (!offset) offset = 0
 
-  const flags = (h.flags || 0) & 32767
+  const flags = (h.flags ?? 0) & 32767
   const type = h.type === 'response' ? RESPONSE_FLAG : QUERY_FLAG
 
-  buf.writeUInt16BE(h.id || 0, offset)
+  buf.writeUInt16BE(h.id ?? 0, offset)
   buf.writeUInt16BE(flags | type, offset + 2)
   buf.writeUInt16BE(h.questions.length, offset + 4)
   buf.writeUInt16BE(h.answers.length, offset + 6)
@@ -33,7 +33,7 @@ export function encode (h: Header, buf: Buffer, offset: number) {
 
 encode.bytes = 12
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) offset = 0
   if (buf.length < 12) throw new Error('Header must be 12 bytes')
   const flags = buf.readUInt16BE(offset + 2)

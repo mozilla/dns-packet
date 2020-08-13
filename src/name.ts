@@ -1,4 +1,4 @@
-export function encode (str: string, buf?: Buffer, offset?: number) {
+export function encode (str: string, buf?: Buffer, offset = 0) {
   if (!buf) buf = Buffer.allocUnsafe(encodingLength(str))
   if (!offset) offset = 0
   const oldOffset = offset
@@ -23,7 +23,7 @@ export function encode (str: string, buf?: Buffer, offset?: number) {
 
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number): string {
+export function decode (buf: Buffer, offset = 0): string {
   if (!offset) offset = 0
 
   const list = []

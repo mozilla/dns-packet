@@ -25,20 +25,20 @@ export const CHECKING_DISABLED = 1 << 4
 export const DNSSEC_OK = 1 << 15
 
 export interface Result {
-  type: 'response'
+  type: string
   id: number
   flags: number
-  answers: Array<{
+  answers?: Array<{
     type: string
     name: string
     data: string
   }>
-  questions: question.QuestionValue[]
-  authorities: any[]
-  additionals: any[]
+  questions?: question.QuestionValue[]
+  authorities?: any[]
+  additionals?: any[]
 }
 
-export function encode (result: Result, buf: Buffer, offset: number) {
+export function encode (result: Result, buf?: Buffer, offset = 0) {
   if (!buf) buf = Buffer.allocUnsafe(encodingLength(result))
   if (!offset) offset = 0
 
@@ -49,7 +49,7 @@ export function encode (result: Result, buf: Buffer, offset: number) {
   if (!result.authorities) result.authorities = []
   if (!result.additionals) result.additionals = []
 
-  header.encode(result, buf, offset)
+  header.encode(result as any, buf, offset)
   offset += header.encode.bytes
 
   offset = encodeList(result.questions, question, buf, offset)
@@ -64,9 +64,7 @@ export function encode (result: Result, buf: Buffer, offset: number) {
 
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
-  if (!offset) offset = 0
-
+export function decode (buf: Buffer, offset = 0) {
   const oldOffset = offset
   const result = header.decode(buf, offset)
   offset += header.decode.bytes
@@ -85,10 +83,10 @@ decode.bytes = 0
 
 export function encodingLength (result: Result) {
   return header.encodingLength() +
-    encodingLengthList(result.questions || [], question) +
-    encodingLengthList(result.answers || [], answer) +
-    encodingLengthList(result.authorities || [], answer) +
-    encodingLengthList(result.additionals || [], answer)
+    encodingLengthList(result.questions ?? [], question) +
+    encodingLengthList(result.answers ?? [], answer) +
+    encodingLengthList(result.authorities ?? [], answer) +
+    encodingLengthList(result.additionals ?? [], answer)
 }
 
 export function streamEncode (result: Result) {

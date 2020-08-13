@@ -1,6 +1,6 @@
 import * as ip from 'ip'
 
-export function encode (host: string, buf: Buffer, offset: number) {
+export function encode (host: string, buf?: Buffer, offset = 0) {
   if (!buf) { buf = Buffer.allocUnsafe(encodingLength()) }
   if (!offset) { offset = 0 }
 
@@ -12,7 +12,7 @@ export function encode (host: string, buf: Buffer, offset: number) {
 }
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) { offset = 0 }
 
   offset += 2

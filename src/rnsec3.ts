@@ -9,7 +9,7 @@ export interface NSEC3Value {
   rrtypes: string[]
 }
 
-export function encode (record: NSEC3Value, buf: Buffer, offset: number) {
+export function encode (record: NSEC3Value, buf?: Buffer, offset = 0) {
   if (!buf) { buf = Buffer.allocUnsafe(encodingLength(record)) }
   if (!offset) { offset = 0 }
   const oldOffset = offset
@@ -48,7 +48,7 @@ export function encode (record: NSEC3Value, buf: Buffer, offset: number) {
 }
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) { offset = 0 }
   const oldOffset = offset
 

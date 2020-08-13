@@ -4,7 +4,7 @@ export function encodingLengthList (list: any[], enc: any) {
   return len
 }
 
-export function encodeList (list: any[], enc: any, buf: Buffer, offset: number) {
+export function encodeList (list: any[], enc: any, buf?: Buffer, offset = 0) {
   for (let i = 0; i < list.length; i++) {
     enc.encode(list[i], buf, offset)
     offset += enc.encode.bytes as number
@@ -12,7 +12,7 @@ export function encodeList (list: any[], enc: any, buf: Buffer, offset: number) 
   return offset
 }
 
-export function decodeList (list: any[], enc: any, buf: Buffer, offset: number) {
+export function decodeList (list: any[], enc: any, buf?: Buffer, offset = 0) {
   for (let i = 0; i < list.length; i++) {
     list[i] = enc.decode(buf, offset)
     offset += enc.decode.bytes as number

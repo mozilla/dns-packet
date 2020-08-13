@@ -8,7 +8,7 @@ export interface DNSKeyValue {
   key: Buffer
 }
 
-export function encode (key: DNSKeyValue, buf: Buffer, offset: number) {
+export function encode (key: DNSKeyValue, buf?: Buffer, offset = 0) {
   if (!buf) { buf = Buffer.allocUnsafe(encodingLength(key)) }
   if (!offset) { offset = 0 }
   const oldOffset = offset
@@ -34,7 +34,7 @@ export function encode (key: DNSKeyValue, buf: Buffer, offset: number) {
 };
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) { offset = 0 }
   const oldOffset = offset
 

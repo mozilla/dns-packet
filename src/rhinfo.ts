@@ -5,7 +5,7 @@ export interface HInfoValue {
   os: string
 }
 
-export function encode (data: HInfoValue, buf: Buffer, offset: number) {
+export function encode (data: HInfoValue, buf?: Buffer, offset = 0) {
   if (!buf) buf = Buffer.allocUnsafe(encodingLength(data))
   if (!offset) offset = 0
 
@@ -21,7 +21,7 @@ export function encode (data: HInfoValue, buf: Buffer, offset: number) {
 }
 
 encode.bytes = 0
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) offset = 0
 
   const oldOffset = offset

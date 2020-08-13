@@ -13,7 +13,7 @@ export interface RRSIGValue {
   signature: Buffer
 }
 
-export function encode (sig: RRSIGValue, buf: Buffer, offset: number) {
+export function encode (sig: RRSIGValue, buf?: Buffer, offset = 0) {
   if (!buf) { buf = Buffer.allocUnsafe(encodingLength(sig)) }
   if (!offset) { offset = 0 }
   const oldOffset = offset
@@ -49,7 +49,7 @@ export function encode (sig: RRSIGValue, buf: Buffer, offset: number) {
 }
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) { offset = 0 }
   const oldOffset = offset
 

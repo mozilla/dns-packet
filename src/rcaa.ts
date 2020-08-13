@@ -9,7 +9,7 @@ export interface CAAValue {
 
 export const ISSUER_CRITICAL = 1 << 7
 
-export function encode (data: CAAValue, buf: Buffer, offset: number) {
+export function encode (data: CAAValue, buf?: Buffer, offset = 0) {
   const len = encodingLength(data)
 
   if (!buf) buf = Buffer.allocUnsafe(encodingLength(data))
@@ -34,7 +34,7 @@ export function encode (data: CAAValue, buf: Buffer, offset: number) {
 
 encode.bytes = 0
 
-export function decode (buf: Buffer, offset: number) {
+export function decode (buf: Buffer, offset = 0) {
   if (!offset) offset = 0
 
   const len = buf.readUInt16BE(offset)

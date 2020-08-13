@@ -1,6 +1,6 @@
 import * as types from './types'
 
-export function encode (typelist: string[], buf: Buffer, offset: number) {
+export function encode (typelist: string[], buf?: Buffer, offset = 0) {
   if (!buf) { buf = Buffer.allocUnsafe(encodingLength(typelist)) }
   if (!offset) { offset = 0 }
   const oldOffset = offset
