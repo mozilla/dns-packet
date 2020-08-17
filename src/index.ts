@@ -90,7 +90,7 @@ export function encodingLength (result: Result) {
 }
 
 export function streamEncode (result: Result) {
-  const buf = exports.encode(result)
+  const buf = encode(result)
   const sbuf = Buffer.allocUnsafe(2)
   sbuf.writeUInt16BE(buf.byteLength)
   const combine = Buffer.concat([sbuf, buf])
@@ -106,8 +106,8 @@ export function streamDecode (sbuf: Buffer) {
     // not enough data
     return null
   }
-  const result = exports.decode(sbuf.slice(2))
-  streamDecode.bytes = exports.decode.bytes
+  const result = decode(sbuf.slice(2))
+  streamDecode.bytes = decode.bytes
   return result
 }
 
