@@ -1,9 +1,19 @@
 root: true
 
+parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaVersion: 2015
+  project: './tsconfig.json'
+
+plugins:
+  - '@typescript-eslint'
 
 env:
   node: true
 
-extends: standard
+extends: 'standard-with-typescript'
+
+rules:
+  no-case-declarations: 0
+  '@typescript-eslint/no-non-null-assertion': 0
+  '@typescript-eslint/strict-boolean-expressions': 0
+  '@typescript-eslint/explicit-function-return-type': 0

@@ -1,11 +1,9 @@
-'use strict'
-
 /*
  * Traditional DNS header OPCODEs (4-bits) defined by IANA in
  * https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-5
  */
 
-exports.toString = function (opcode) {
+export function toString (opcode: number) {
   switch (opcode) {
     case 0: return 'QUERY'
     case 1: return 'IQUERY'
@@ -24,10 +22,10 @@ exports.toString = function (opcode) {
     case 14: return 'OPCODE_14'
     case 15: return 'OPCODE_15'
   }
-  return 'OPCODE_' + opcode
+  return `OPCODE_${opcode}`
 }
 
-exports.toOpcode = function (code) {
+export function toOpcode (code: string) {
   switch (code.toUpperCase()) {
     case 'QUERY': return 0
     case 'IQUERY': return 1

@@ -1,6 +1,4 @@
-'use strict'
-
-exports.toString = function (type) {
+export function toString (type: number) {
   switch (type) {
     case 1: return 'A'
     case 10: return 'NULL'
@@ -51,10 +49,10 @@ exports.toString = function (type) {
     case 32771: return 'NEWONE'
     case 65281: return 'NEWTWO'
   }
-  return 'UNKNOWN_' + type
+  return `UNKNOWN_${type}`
 }
 
-exports.toType = function (name) {
+export function toType (name: string) {
   switch (name.toUpperCase()) {
     case 'A': return 1
     case 'NULL': return 10
